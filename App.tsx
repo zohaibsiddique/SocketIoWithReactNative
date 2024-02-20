@@ -1,27 +1,33 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
 import axios from 'axios';
 import { io } from 'socket.io-client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 
-const apiCall = () => {
-  // axios.get('http://localhost:8080').then((data) => {
-  //   //this console.log will be in our frontend console
-  //   console.log(data)
-  // })
-}
+
 
 export default function App() {
+
+  const[message, setMessage] = useState()
   
   useEffect(() => {
-    const socket = io("http://localhost:8080");
+    socket.on('chat message', (msg) => {
+      setMessage(msg)
+    });
   }, );
+
+  
+  const socket = io("http://localhost:8080");
+
+  const sendMessage = () => {
+    socket.emit('chat message', "This is a message from client");
+  }
 
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <Button onPress={apiCall} title='Make Call'/>
+      <Text>{message}</Text>
+      <Button onPress={sendMessage} title='Make Call'/>
     </View>
   );
 }
