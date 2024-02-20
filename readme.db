@@ -1,7 +1,7 @@
 Socket.io with React Native is an example project to explore how react native will work with Socket.io
 for real time application 
 ***
-1. To run server, type command node.index.js in terminal to run express server.
+1. To run server, type command node index.ts in terminal to run express server.
 2. To run client, open another terminal and write command yarn web.
 3. On successfully started server and client, a console message will be appeared "a user connected". 
-4. To discconnect a user, simply close client.    
+4. To discconnect a user, simply close client you will see a console message "user disconnected".    
